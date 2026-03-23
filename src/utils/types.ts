@@ -3,8 +3,18 @@ export enum MoodCategory {
   Manic = 'Maníaco',
   Mixed = 'Misto',
   Euthymic = 'Eutímico',
-  Anxious = 'Ansioso'
 }
+
+export type MoodNodeId =
+  | 'euthymia'
+  | 'cyclothymia'
+  | 'major-depression'
+  | 'dysthymia'
+  | 'hypomania'
+  | 'mania'
+  | 'mixed-state'
+  | 'agitated-depression'
+  | 'catatonia';
 
 export interface Vector3 {
   x: number;
@@ -12,16 +22,28 @@ export interface Vector3 {
   z: number;
 }
 
+/**
+ * x = valência / humor
+ * y = energia / ativação
+ * z = estabilidade / controle
+ */
 export interface MoodNode {
-  id: string;
+  id: MoodNodeId;
   label: string;
   description: string;
   category: MoodCategory;
-  position: Vector3; // x: Valence, y: Energy, z: Stability
+  position: Vector3;
   color: string;
-  clinicalRisk: number; // 0 to 100 (Percentual de risco imediato)
-  neuroplasticity: number; // 0 to 100 (Potencial de adaptação neural)
+  clinicalRisk: number; // 0-100
+  neuroplasticity: number; // 0-100
 }
+
+export interface MoodPanelContentEntry {
+  insight: string;
+  elevation: number; // 0-1
+}
+
+export type MoodPanelContentMap = Record<MoodNodeId, MoodPanelContentEntry>;
 
 export interface TimePoint {
   day: string;

@@ -24,9 +24,12 @@
       "@/*": [
         "./src/*"
       ],
-      "@c/*": ["./src/components/*"],
-      "@u/*": ["./src/utils/*"],
-      "@s/*": ["./src/services/*"]
+      "@c/*": [
+        "./src/components/*"
+      ],
+      "@u/*": [
+        "./src/utils/*"
+      ]
     }
   },
   "include": [
